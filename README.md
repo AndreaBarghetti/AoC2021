@@ -1,4 +1,6 @@
 # AoC2021
+My solutions for the Advent of Code 2021
 
-## Member of the GoldenGiraffes
+
+### The Golden Giraffes
 ![image](golden_giraffes.png)
