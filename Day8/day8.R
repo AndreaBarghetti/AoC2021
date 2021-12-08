@@ -50,8 +50,8 @@ allow_digits <- c("abcefg" = "0",
                   "abcdfg" = "9")
 
 # this is slow but it works
-# can make it faster by stopping at first occurrence of not allowed digit
-# within each list of digits
+# how to make it fast ?
+# how to avoid testing every single combination ?
 fix_display <- function(display) {
   for (i in 1:nrow(comb_matrix)) {
     r <- all(str_replace_all(display$input %>% toupper(), 
