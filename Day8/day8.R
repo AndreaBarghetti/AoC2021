@@ -50,8 +50,6 @@ allow_digits <- c("abcefg" = "0",
                   "abcdfg" = "9")
 
 # this is slow but it works
-# how to make it fast ?
-# how to avoid testing every single combination ?
 fix_display <- function(display) {
   for (i in 1:nrow(comb_matrix)) {
     r <- all(str_replace_all(display$input %>% toupper(), 
@@ -73,3 +71,10 @@ fixed_outputs %>%
   unlist() %>% 
   sum()
 
+
+# how to make it fast ?
+# avoid testing every single combination 
+# use digits 1,4,7,8 to know some of the letters
+# for example. if there is 1 and 7, a=7-1, d=8-0 etc...
+# or use overlap of letters for each set of numbers
+# for example. if all numbers are present, a=the letter containted by 8 numbers etc...
