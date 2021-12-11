@@ -9,7 +9,7 @@ My solutions for the Advent of Code 2021
 
 ### Day1
 
-![image1](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day1/seafloor.png)
+![image_d1](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day1/seafloor.png)
 
 ### Day9
 
