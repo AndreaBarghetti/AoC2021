@@ -32,17 +32,17 @@ space2[which(find_low_points(space))] <- which(find_low_points(space))
 # without touching the edges (the 0s)
 # and repeat until it's stable
 spread_max <- function(space2) {
-  x <- apply(space2, 1, function(x) {
+  space2 <- apply(space2, 1, function(x) {
     r <- pmap_dbl(list(lag(x,default =0), x, lead(x,default = 0)), max)
     r[x==0]<-0
     r
   }) %>% t()
-  y <- apply(space2, 2, function(x) {
+  space2 <- apply(space2, 2, function(x) {
     r <- pmap_dbl(list(lag(x,default =0), x, lead(x,default = 0)), max)
     r[x==0]<-0
     r
   })
-  map2_dbl(x,y, max) %>% matrix(ncol=ncol(space2))
+  space2
 }
 
 spread_max_all <- function(space2) {
@@ -93,4 +93,24 @@ film_basins <- function(space2,filename) {
   outdir = getwd()
   )
 }
+
+# changed for for cooler animation
+spread_max <- function(space2) {
+  x <- apply(space2, 1, function(x) {
+    r <- pmap_dbl(list(lag(x,default =0), x, lead(x,default = 0)), max)
+    r[x==0]<-0
+    samp <- rbinom(n = 10, size = 1, prob = .5) %>% as.logical()
+    r[samp]<-x[samp]
+    r
+  }) %>% t()
+  y <- apply(space2, 2, function(x) {
+    r <- pmap_dbl(list(lag(x,default =0), x, lead(x,default = 0)), max)
+    r[x==0]<-0
+    samp <- rbinom(n = 10, size = 1, prob = .5) %>% as.logical()
+    r[samp]<-x[samp]
+    r
+  })
+  map2_dbl(x,y, max) %>% matrix(ncol=ncol(space2))
+}
+
 film_basins(space2, "basins.gif")
