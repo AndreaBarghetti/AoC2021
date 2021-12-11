@@ -25,6 +25,8 @@ My solutions for the Advent of Code 2021
 
 ### Day6
 
+![gif6](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day6/fishes.gif)
+
 ### Day7
 
 ### Day8

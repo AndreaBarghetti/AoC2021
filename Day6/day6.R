@@ -16,11 +16,43 @@ next_day <- function(fish_pop) {
 }
 
 grow_fish <- function(fish_pop, days=80) {
-  walk(1:days, function(fish_pop) {fish_pop <- next_day(fish_pop)})
+  for (i in 1:days) {
+    fish_pop <- next_day(fish_pop)
+    }
   fish_pop
 }
 
-sum(grow_fish2(fish_pop))
+sum(grow_fish(fish_pop,80))
 
 # part 2 ####
-sum(grow_fish2(fish_pop, 256)) %>% format(scientific=F)
+library(animation)
+
+sum(grow_fish(fish_pop, 256)) %>% format(scientific=F)
+
+
+# Visualization
+pops <- lapply(1:256, function(day) {grow_fish(fish_pop, day)})
+
+pops[[1]]
+
+
+saveGIF(
+  {
+    for (i in 1:256) {
+      print(ggplot(data=NULL, aes(x=as.character(1:9), y=pops[[i]])) +
+              geom_col(aes(fill=factor(as.character(1:9))), show.legend = F) +
+              theme_bw() +
+              scale_y_continuous(n.breaks = 2, breaks = c(0,max(pops[[i]]))) +
+              scale_fill_brewer(palette = "Blues") +
+              labs(y="Population Size",x="Reproductive Status") +
+              ggtitle("Day", i))
+    }
+  },
+  loop=T,
+  interval=0.1,
+  ani.width = 300, 
+  ani.height = 300,
+  movie.name = "fishes.gif", 
+  outdir = getwd()
+)
+
