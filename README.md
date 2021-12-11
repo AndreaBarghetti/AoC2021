@@ -5,7 +5,11 @@ My solutions for the Advent of Code 2021
 ### The Golden Giraffes
 ![image](golden_giraffes.png)
 
-## Animation:
+## Visualizations:
+
+### Day1
+
+![image1](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day1/seafloor.png)
 
 ### Day9
 

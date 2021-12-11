@@ -7,3 +7,22 @@ sum(input > lag(input), na.rm = T)
 # part2 ####
 slideinput <- input + lag(input) + lead(input)
 sum(slideinput > lag(slideinput), na.rm = T)
+
+
+
+# visualization
+seafloor <- ggplot(data=NULL, aes(x=seq_along(input), y=max(input)-input)) +
+  geom_segment(aes(y=1:max(input),
+                   yend=1:max(input),
+                   x=1,
+                   xend=length(input),
+                   col=1:max(input), alpha=.1)) +
+  geom_area() +
+  theme_void()
+
+ggsave(plot = seafloor, 
+       filename = "seafloor.png", 
+       device = "png", 
+       path = "Day1/",
+       width = 10,
+       height = 10, units = "cm")
