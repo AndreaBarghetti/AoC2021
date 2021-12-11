@@ -15,8 +15,8 @@ seafloor <- ggplot(data=NULL, aes(x=seq_along(input), y=max(input)-input)) +
   geom_segment(aes(y=1:max(input),
                    yend=1:max(input),
                    x=1,
-                   xend=length(inv_input),
-                   col=1:max(inv_input), alpha=.1),
+                   xend=length(input),
+                   col=1:max(input), alpha=.1),
                show.legend = F) +
   geom_area(show.legend = F) +
   theme_void() +
