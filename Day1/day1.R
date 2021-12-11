@@ -26,5 +26,5 @@ ggsave(plot = seafloor,
        filename = "seafloor.png", 
        device = "png", 
        path = "Day1/",
-       width = 5,
-       height = 5, units = "cm")
+       width = 4,
+       height = 4, units = "cm")
