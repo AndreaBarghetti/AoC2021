@@ -13,7 +13,7 @@ My solutions for the Advent of Code 2021
 
 ### Day2
 
-![image_d2](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day2/route.png)
+![image_d](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day2/route.png)
 
 
 ### Day9
