@@ -75,14 +75,12 @@ find_sync(octop)
 
 # animation ####
 library(animation)
+library(reshape2)
 
 plot_octopuses <- function(matrix) {
   matrix %>% 
-    as_tibble() %>% 
-    rownames_to_column("row") %>% 
-    pivot_longer(cols = contains("V"), names_to = "col") %>% 
-    mutate(col = col %>% str_remove("V") %>% as.integer()) %>% 
-    ggplot(aes(x=col, y=row, fill=value)) +
+    melt() %>% 
+    ggplot(aes(x=Var1, y=Var2, fill=value)) +
     scale_fill_viridis_c(option = "magma", direction = 1, limits=c(0,10)) +
     geom_tile(show.legend = F) +
     theme_void() 
