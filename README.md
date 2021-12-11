@@ -7,5 +7,11 @@ My solutions for the Advent of Code 2021
 
 ## Animation:
 
+### Day9
+
+![gif9](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day9/basins.gif)
+
+
 ### Day 11
-![gif](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day11/octopuses.gif)
+
+![gif11](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day11/octopuses.gif)
