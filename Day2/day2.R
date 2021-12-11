@@ -63,7 +63,7 @@ route <- ggplot() +
   geom_line(data=positions, 
             aes(x=x,y=y), 
             col="black",
-            size=1) +
+            size=.1) +
   theme_void() +
   theme(legend.position = "none") 
 

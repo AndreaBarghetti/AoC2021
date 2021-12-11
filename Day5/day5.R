@@ -59,3 +59,21 @@ add_d_lines <- function(matrix, lines) {
 
 sum((add_s_lines(space, straight_lines) %>% 
   add_d_lines(dia_lines))>=2)
+
+
+# Visualization ####
+space_df <- (add_s_lines(space, straight_lines) %>% 
+   add_d_lines(dia_lines)) %>% 
+  reshape2::melt()
+
+vents <- ggplot(space_df, aes(x=Var1, y=Var2, fill=value)) +
+  geom_tile(show.legend = F) +
+  theme_void() +
+  scale_fill_continuous()
+
+ggsave(plot = vents, 
+       filename = "vents.png", 
+       device = "png", 
+       path = "Day5/",
+       width = 4,
+       height = 4, units = "cm") 
