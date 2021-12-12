@@ -29,6 +29,8 @@ My solutions for the Advent of Code 2021
 
 ### Day 7
 
+![image7](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day7/crabs.svg)
+
 ### Day 8
 
 ### Day 9
