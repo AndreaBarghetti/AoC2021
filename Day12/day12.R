@@ -95,10 +95,10 @@ vers <- c(dirvis$from,dirvis$to) %>% unique() %>%
 my_graph <- igraph::graph_from_data_frame(dirvis, vertices = vers)
 
 graph <- ggraph(my_graph, layout = 'linear', circular = TRUE) + 
-  geom_edge_arc(width=5, alpha=.5, colour="black") +
-  geom_node_point(aes(fill=as.factor(size)),shape=21,size=15,show.legend = F, alpha=1) +
+  geom_edge_arc(width=1, alpha=.5, colour="dark red") +
+  geom_node_point(aes(fill=as.factor(size)),shape=21,size=8,show.legend = F, alpha=1) +
   #scale_size(limits = c(0,20)) +
-  geom_node_text(aes(label=name), col="black", size=6) +
+  geom_node_text(aes(label=name), col="black", size=3) +
   theme_void() +
   theme(legend.position="none",
         plot.margin=unit(c(0,0,0,0),"cm")) +
@@ -106,7 +106,7 @@ graph <- ggraph(my_graph, layout = 'linear', circular = TRUE) +
   scale_fill_brewer()
   
 ggsave(plot = graph,
-       filename = "grap.png", 
+       filename = "graph.png", 
        device = "png", 
        path = "Day12/",
        width = 4,
