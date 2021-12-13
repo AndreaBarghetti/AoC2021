@@ -60,3 +60,15 @@ ifelse(fold_all(mat, folds)==0,".","#") %>%
 
 
 # Visualization ####
+plot_paper <- function(matrix) {
+  matrix %>% 
+    t() %>% 
+    reshape2::melt() %>% 
+    ggplot(aes(x=Var1, y=-Var2, fill=value)) +
+    scale_fill_viridis_c(option = "magma", direction = 1, limits=c(0,1)) +
+    geom_tile(show.legend = F) +
+    theme_void()
+} 
+plot_paper(fold_all(mat, folds))
+
+plot_paper(mat)
