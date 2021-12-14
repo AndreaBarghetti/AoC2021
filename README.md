@@ -48,3 +48,5 @@ My solutions for the Advent of Code 2021
 ![image_d12](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day12/graph.png)
 
 ### Day 13
+
+![gif13](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day13/folding.gif)

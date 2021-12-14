@@ -1,6 +1,5 @@
 library(tidyverse)
 
-
 # this solution does not work when there are folds <=2
 # to be fixed . avoid that: matrix[1,] returns a vector
 
@@ -34,15 +33,24 @@ fold_paper <- function(matrix, given_pos = c("x","y"), position) {
   if (given_pos=="x") {
     
     width<-min(position-1, ncol-position)
-    matrix[,(position-width):(position-1)] <- matrix[,(position-width):(position-1)] + matrix[,(position+width):(position+1)]
-    return(matrix[,1:(position-1)])
+    p1 <- (position-width):(position-1)
+    p2 <- (position+width):(position+1)
+    p3 <- 1:(position-1)
+    
+    matrix[,p1] <- matrix[,p1] + matrix[,p2]
+    return(matrix[,p3])
   }
   
   if (given_pos=="y") {
     
+    #DRY this
     width<-min(position-1, nrow-position)
-    matrix[(position-width):(position-1),] <- matrix[(position-width):(position-1),] + matrix[(position+width):(position+1),]
-    return(matrix[1:(position-1),])
+    p1 <- (position-width):(position-1)
+    p2 <- (position+width):(position+1)
+    p3 <- 1:(position-1)
+    
+    matrix[p1,] <- matrix[p1,] + matrix[p2,]
+    return(matrix[p3,])
   }
 }
 
@@ -60,15 +68,34 @@ ifelse(fold_all(mat, folds)==0,".","#") %>%
 
 
 # Visualization ####
+library(animation)
+
 plot_paper <- function(matrix) {
-  matrix %>% 
+  ifelse(matrix==0,0,1) %>% 
     t() %>% 
     reshape2::melt() %>% 
-    ggplot(aes(x=Var1, y=-Var2, fill=value)) +
-    scale_fill_viridis_c(option = "magma", direction = 1, limits=c(0,1)) +
+    ggplot(aes(x=Var1, y=-Var2, fill=as.factor(value))) +
     geom_tile(show.legend = F) +
-    theme_void()
+    theme_void() +
+    scale_fill_manual(values = c("black","white"))
 } 
-plot_paper(fold_all(mat, folds))
 
-plot_paper(mat)
+fold_animate <- function(matrix, folds, filename) {
+  saveGIF({
+    print(plot_paper(matrix))
+    for(i in seq_along(folds$axis)) {
+      matrix <- fold_paper(matrix, folds$axis[i], folds$value[i])
+      print(plot_paper(matrix))
+    }
+  },
+  loop=T,
+  interval=0.5,
+  ani.width = 300, 
+  ani.height = 300,
+  movie.name = filename, 
+  outdir = getwd()
+  )
+}
+
+fold_animate(mat, folds, "folding.gif")
+
