@@ -97,10 +97,10 @@ track_xy_vis <- function(y_speed, x_speed, target) {
     res$x <- c(res$x, x)
     
     # remove the ones with positive curvature
-    if (x_speed == 0 & y_speed >0) {remove<-T}
+    #if (x_speed == 0 & y_speed >0) {remove<-T}
     
     # remove the ones that drop straight
-    if (x_speed == 0) {remove<-T} 
+    #if (x_speed == 0) {remove<-T} 
     
     if (between(y, min(target$y), max(target$y)) & between(x, min(target$x), max(target$x))) {
       
@@ -129,8 +129,10 @@ try_all_vis <- function(target) {
   max_xspeed <- max(target$x)
   min_xspeed <- min(which(cumsum(1:min(target$x)) >= min(target$x)))
   try_x <- min_xspeed:max_xspeed
+  try_y <- min(target$y):max_yspeed
   # remove the ones shot at angle < 0
-  try_y = 0:max_yspeed#min(target$y):max_yspeed
+  #try_y <- 0:max_yspeed
+  
   
   lapply(try_y, function(y) {
     try_all_x_vis(try_x = try_x, y_speed = y, target = target)
@@ -156,10 +158,15 @@ best <- vis_df %>%
 
 plot <- ggplot(data=vis_df ) +
   geom_point(x=0,y=0,col="red", size=1) +
-  geom_line(aes(x=x,y=y, group=L1),size=0.1,col="white") +
-  geom_point(aes(x=x,y=y),size=.2,col="white") +
+  geom_line(aes(x=x,y=y, group=L1),
+            size=0.1,
+            col="white") +
+  # geom_point(aes(x=x,y=y),
+  #            size=.2,
+  #            col="white") +
   annotate(geom = "rect", 
            col="green",
+           size=.2,
            fill="transparent",
            xmin = min(target[["x"]]), 
            xmax = max(target[["x"]]),
@@ -169,11 +176,12 @@ plot <- ggplot(data=vis_df ) +
                   ylim = c(min(target[["y"]]), NA))+
   theme_void() +
   theme(panel.background = element_rect(fill="#08306B"))
-plot
+
 ggsave(plot = plot, 
        filename = "day17plot.png", 
        device = "png", 
        path = "Day17/",
        width = 4,
-       height = 4, units = "cm")  
+       height = 6, 
+       units = "cm")  
 
