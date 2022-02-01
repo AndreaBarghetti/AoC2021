@@ -52,3 +52,8 @@ My solutions for the Advent of Code 2021
 ### Day 13
 
 ![gif13](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day13/folding.gif)
+
+### Day 17
+* kept only some trajectories for prettier vis
+
+![image_d17](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day17/day17plot.png)
