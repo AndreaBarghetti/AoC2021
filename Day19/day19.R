@@ -2,7 +2,7 @@ library(tidyverse)
 
 # part 1 ####
 input <- read_lines("Day19/input.txt")
-input <- read_lines("Day19/test.txt")
+#input <- read_lines("Day19/test.txt")
 
 # parse input
 parse_string <- function(string) {
@@ -175,4 +175,36 @@ res$scanner_positions %>%
   dist(method = "man") %>% 
   max()
 
+# Visualization ####
+library(plotly)
 
+beacons_df <- res$scanners %>% 
+  purrr::reduce(rbind) %>% 
+  unique() %>% 
+  as_tibble() %>% 
+  setNames(c("x","y","z")) %>% 
+  mutate(type="beacon")
+
+scanners_df <- res$scanner_positions %>% 
+  purrr::reduce(rbind) %>% 
+  unique() %>% 
+  as_tibble() %>% 
+  setNames(c("x","y","z")) %>% 
+  mutate(type="scanner")
+
+df <- bind_rows(beacons, scanners)
+
+plotly::plot_ly(data = df, 
+                x=~x, 
+                y=~y, 
+                z=~z, 
+                # type="scatter3d", 
+                # mode="markers", 
+                color=~type,
+                colors = c('black', 'green')) %>% 
+  add_markers()
+
+ggplot(scanners, aes(x=x,y=y)) +
+  geom_point(shape=21, col="green", size=50, fill="green", alpha = .3) +
+  geom_point(data=beamers, shape=10, col="black", size=2)
+  
