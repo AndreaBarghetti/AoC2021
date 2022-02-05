@@ -15,10 +15,6 @@ My solutions for the Advent of Code 2021
 
 ![image_d](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day2/route.png)
 
-### Day 3
-
-### Day 4
-
 ### Day 5
 
 ![image_d](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day5/vents.png)
@@ -33,13 +29,9 @@ My solutions for the Advent of Code 2021
 
 ![gif7](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day7/crabs.gif)
 
-### Day 8
-
 ### Day 9
 
 ![gif9](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day9/basins.gif)
-
-### Day 10
 
 ### Day 11
 
@@ -59,4 +51,8 @@ My solutions for the Advent of Code 2021
 
 ### Day 19
 
-![image_d19](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day19/plot.html)
+![gif19](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day19/3dAnimatedScatterplot.gif)
+
+### Day 20
+
+![gif20](https://github.com/AndreaBarghetti/AoC2021/blob/main/Day20/day20animation.gif)
