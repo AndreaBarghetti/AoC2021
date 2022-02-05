@@ -192,9 +192,9 @@ scanners_df <- res$scanner_positions %>%
   setNames(c("x","y","z")) %>% 
   mutate(type="scanner")
 
-df <- bind_rows(beacons, scanners)
+df <- bind_rows(beacons_df, scanners_df)
 
-plotly::plot_ly(data = df, 
+plot <- plotly::plot_ly(data = df, 
                 x=~x, 
                 y=~y, 
                 z=~z, 
@@ -204,7 +204,49 @@ plotly::plot_ly(data = df,
                 colors = c('black', 'green')) %>% 
   add_markers()
 
-ggplot(scanners, aes(x=x,y=y)) +
+htmltools::save_html(
+  html = htmltools::as.tags(
+    x = plotly::toWebGL(plot),
+    standalone = TRUE),
+  file = "Day19/plot.html")
+
+
+# 2d
+ggplot(scanners_df, aes(x=x,y=y)) +
   geom_point(shape=21, col="green", size=50, fill="green", alpha = .3) +
-  geom_point(data=beamers, shape=10, col="black", size=2)
+  geom_point(data=beacons_df, shape=10, col="black", size=2)
   
+# to gif
+library(rgl)
+library(car)
+library(magick)
+
+# Let's use the iris dataset
+# iris
+
+# This is ugly
+colors <- c("black", "green")
+df$color <- colors[ as.numeric( as.factor(df$type))]
+
+
+# Static chart
+plot3d( as.data.frame(df)[,1], 
+        as.data.frame(df)[,2], 
+        as.data.frame(df)[,3], 
+        col = as.data.frame(df)[,5], 
+        type = "s" , size=5, radius = 50, decorate=F)
+
+# We can indicate the axis and the rotation velocity
+play3d( spin3d( axis = c(0, 0, 1), rpm = 10), duration = 10 )
+
+# Save like gif
+movie3d(
+  movie="3dAnimatedScatterplot", 
+  spin3d( axis = c(0, 0, 1), rpm = 3),
+  duration = 15, 
+  dir = ".",
+  type = "gif", 
+  clean = TRUE
+)
+
+
